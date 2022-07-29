@@ -14,10 +14,15 @@ app.use(express.json());
 app.use(express.urlencoded({extended:false}))
 
 
-app.use('/api/users', require('./routes/userRoutes'));
+app.use('/api/users' ,require('./routes/userRoutes'));
 
 app.use('/api/tickets',require('./routes/ticketRoutes'))
+// 
+app.get('/',async(req,res)=>{
 
+    const user = await Users.findOne({$or:[{pN:req},{email:req}]} )
+
+})
 app.use(errorHandler);
 
 
